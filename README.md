@@ -23,26 +23,17 @@ First I removed outliers using Inter Quatile Range. Some of the rows were left s
 ## EDA
 I looked at the distributions of the data and the value counts for the various categorical variables. Below are a few highlights from the pivot tables.
 
-![alt text](https://github.com/Panasak/Thailand_House_Prices_Predictor/blob/main/data_clean/sactter_plot.png)
-![alt text](https://github.com/Panasak/Thailand_House_Prices_Predictor/blob/main/data_clean/heat_plot.png)
-![alt text](https://github.com/Panasak/Thailand_House_Prices_Predictor/blob/main/data_clean/box_plot.png)
-![alt text](https://github.com/Panasak/Thailand_House_Prices_Predictor/blob/main/data_clean/bar_plot.png)
+![alt text](https://github.com/panasak/Insurance_Linear_regression/blob/main/overlap.png)
+![alt text](https://github.com/panasak/Insurance_Linear_regression/blob/main/heat.png)
+![alt text](https://github.com/panasak/Insurance_Linear_regression/blob/main/transform.png)
+
 ## Model Building
 First I transformed the categorical variables into dummy variables. I also split the data into train and test sets with a test size of 33%
-I tired three different models and evaluated them using Mean Absolute Error. I chose MAE because it is relatively easy to interpret and outliers aren't particularly bad in for this type of model.
-I tried three different models:
-* **Multiple Linear Regression** - Baseline for the model
-* **Lasso Regression** - Because of the sparse data from the many categorical variables. I thought a normalized regression like lasso would be effective
-* **Random Forest** - Again, with the sparsity associated with the data, I thought that this would be a good fit
+I scaled the data using StandardScaler from sklearn and used GridSearchCV for the parameter optimization of linear regression. 
+I then created an instance of linear regression moddel using the optimized paramters and fit the data.
 ## Model Performance
-The Random Forest model outperformed the other approaches on the test and validation sets
-* **Random Forest:** MAE = 4411561.95
-* **Linear Regression:** MAE = 441239550501459.25
-* **Lasso Regression:** MAE = 6423036.02
-## Productization
-In this step, I built a flask API endpoint that was hosted on a local webserver by following along with the TDS tutorial in the reference section above. The API endpoint takes in a request with a list of values for a house listing and return an estimated price.
-
-
-
-
-
+I have choosen to use, MAE, MSE, RMSE, and Cooeficient of Determination to evaluate my model. The results are as follow:
+* **MAE:** 0.41
+* **MSE:** 0.43
+* **RMSE:** 0.66
+* **R^2:** 0.78
